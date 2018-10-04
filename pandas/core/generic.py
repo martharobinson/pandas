@@ -7349,10 +7349,12 @@ class NDFrame(PandasObject, SelectionMixin):
                  label=None, convention='start', kind=None, loffset=None,
                  limit=None, base=0, on=None, level=None):
         """
-        Convenience method for frequency conversion and resampling of time
-        series.  Object must have a datetime-like index (DatetimeIndex,
-        PeriodIndex, or TimedeltaIndex), or pass datetime-like values
-        to the on or level keyword.
+        Resample a time series.
+
+        Performs resampling of time series data that can be used for
+        frequency conversion, for example downsampling data sampled every second
+        into data sampled every five minutes, or upsampling data sampled every
+        week to provide values for each day.
 
         Parameters
         ----------
@@ -7398,6 +7400,10 @@ class NDFrame(PandasObject, SelectionMixin):
 
         Notes
         -----
+        This method groups the data by a specific timespan, returning a
+        resampler object. Reduction methods can then be applied to this to
+        determine how the data is resampled.
+
         See the `user guide
         <http://pandas.pydata.org/pandas-docs/stable/timeseries.html#resampling>`_
         for more.
